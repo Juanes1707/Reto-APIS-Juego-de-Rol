@@ -95,18 +95,18 @@ router.get("/:id/habilidades/:habilidadId", (req, res) => {
 
 //Modificar Una habilidad PUT
 router.put("/:id", (req, res) => {
-    const id = Number(req.params.id);
+    const id = Number(req.params.id); //Convierte el ID del personaje a un número para asegurar que la comparación se realice correctamente, ya que los parámetros de la URL son cadenas por defecto.
 
-    const habilidad = habilidades.find((h) => h.id === id);
+    const habilidad = habilidades.find((h) => h.id === id); //Busca la habilidad en la lista de habilidades utilizando el ID proporcionado en la URL.
 
     if (!habilidad) {
     return res.status(404).json({ error: "Habilidad no encontrada" });
-    }
+    } //Si no se encuentra ninguna habilidad con ese ID, se devuelve un error 404 indicando que la habilidad no fue encontrada.
 
   // Actualiza los campos
-    Object.assign(habilidad, req.body);
+    Object.assign(habilidad, req.body); //Utiliza Object.assign para actualizar los campos de la habilidad con los datos proporcionados en el cuerpo de la solicitud (req.body). Esto permite modificar cualquier campo de la habilidad sin necesidad de especificar cada uno individualmente.
 
-    res.status(200).json(habilidad);
+    res.status(200).json(habilidad); //Devuelve la habilidad actualizada con un estado 200.
 });
 
 module.exports = router;
