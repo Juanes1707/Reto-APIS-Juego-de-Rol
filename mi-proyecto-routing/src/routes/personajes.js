@@ -109,4 +109,22 @@ router.put("/:id", (req, res) => {
     res.status(200).json(habilidad); //Devuelve la habilidad actualizada con un estado 200.
 });
 
+// ========================
+// RETO 5 — DELETE /api/personajes/:id
+// Elimina un personaje por su id
+// ========================
+router.delete('/:id', (req, res) => {
+  const id = Number(req.params.id); // convierte el string del URL a número
+
+  const index = personajes.findIndex(p => p.id === id); // busca la posición en el array
+
+  if (index === -1) {
+    // Si findIndex devuelve -1, el personaje no existe
+    return res.status(404).json({ error: 'Personaje no encontrado' });
+  }
+
+  personajes.splice(index, 1); // elimina 1 elemento en esa posición
+  res.status(204).send();       // 204: éxito sin body
+});
+
 module.exports = router;
