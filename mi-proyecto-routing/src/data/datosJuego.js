@@ -34,7 +34,69 @@ incremento_estamina: -3,
 
 },
 
-// Agrega al menos 4 habilidades más.
+{
+
+id: 3,
+
+nombre: 'Golpe Crítico',
+
+descripcion: 'Un ataque devastador con gran precisión.',
+
+incremento_ataque: 20,
+
+incremento_defensa: 0,
+
+incremento_estamina: -8,
+
+},
+
+{
+
+id: 4,
+
+nombre: 'Curación',
+
+descripcion: 'Restaura la salud y energía del personaje.',
+
+incremento_ataque: 0,
+
+incremento_defensa: 8,
+
+incremento_estamina: 12,
+
+},
+
+{
+
+id: 5,
+
+nombre: 'Lluvia de Magia',
+
+descripcion: 'Lanza una lluvia de proyectiles mágicos devastadores.',
+
+incremento_ataque: 18,
+
+incremento_defensa: 2,
+
+incremento_estamina: -10,
+
+},
+
+{
+
+id: 6,
+
+nombre: 'Armadura de Roca',
+
+descripcion: 'Crea una armadura de piedra para mayor protección.',
+
+incremento_ataque: 0,
+
+incremento_defensa: 20,
+
+incremento_estamina: -5,
+
+}
 
 ];
 

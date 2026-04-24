@@ -91,7 +91,8 @@ router.get("/:id/habilidades/:habilidadId", (req, res) => {
     }
   //Si no se encuentra ningún personaje con ese ID, se devuelve un error 404 indicando que el personaje no fue encontrado.
 
-  const habilidad = habilidades.find((h) => h.id === habilidadId); //Busca la habilidad en la lista de habilidades utilizando el ID de la habilidad proporcionado en la URL.
+  const habilidad = habilidades.find((h) => h.id === habilidadId && personaje.habilidades.includes(h.id)
+); //Busca la habilidad en la lista de habilidades utilizando el ID de la habilidad proporcionado en la URL.
 
     if (!habilidad) {
     return res.status(404).json({ error: "Habilidad no encontrada" });
@@ -101,21 +102,6 @@ router.get("/:id/habilidades/:habilidadId", (req, res) => {
   res.status(200).json(habilidad); //Si ambos el personaje y la habilidad existen, se devuelve la información de la habilidad con un estado 200.
 });
 
-//Modificar Una habilidad PUT
-router.put("/:id", (req, res) => {
-    const id = Number(req.params.id); //Convierte el ID del personaje a un número para asegurar que la comparación se realice correctamente, ya que los parámetros de la URL son cadenas por defecto.
-
-    const habilidad = habilidades.find((h) => h.id === id); //Busca la habilidad en la lista de habilidades utilizando el ID proporcionado en la URL.
-
-    if (!habilidad) {
-    return res.status(404).json({ error: "Habilidad no encontrada" });
-    } //Si no se encuentra ninguna habilidad con ese ID, se devuelve un error 404 indicando que la habilidad no fue encontrada.
-
-  // Actualiza los campos
-    Object.assign(habilidad, req.body); //Utiliza Object.assign para actualizar los campos de la habilidad con los datos proporcionados en el cuerpo de la solicitud (req.body). Esto permite modificar cualquier campo de la habilidad sin necesidad de especificar cada uno individualmente.
-
-    res.status(200).json(habilidad); //Devuelve la habilidad actualizada con un estado 200.
-});
 
 // ========================
 // RETO 5 — DELETE /api/personajes/:id
