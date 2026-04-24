@@ -126,5 +126,34 @@ router.delete('/:id', (req, res) => {
   personajes.splice(index, 1); // elimina 1 elemento en esa posición
   res.status(204).send();       // 204: éxito sin body
 });
+// ========================
+// RETO 7 — GET /api/personajes?tipo=
+// Obtiene personajes por tipo
+// ========================
+router.get('/', (req, res) => {
+  const { tipo } = req.query;
+
+  let resultado = personajes;
+
+  if (tipo) {
+    const tipoLower = tipo.toLowerCase();
+
+    const existe = personajes.some(
+      p => p.tipo.toLowerCase() === tipoLower
+    );
+
+    if (!existe) {
+      return res.status(404).json({
+        error: `No existen personajes del tipo '${tipo}'`
+      });
+    }
+
+    resultado = personajes.filter(
+      p => p.tipo.toLowerCase() === tipoLower
+    );
+  }
+
+  res.status(200).json(resultado);
+});
 
 module.exports = router;

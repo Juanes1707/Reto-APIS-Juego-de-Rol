@@ -58,4 +58,28 @@ router.delete("/:id", (req, res) => {
     res.status(204).send();
 });
 
+// ========================
+// RETO 8 — GET /api/habilidades?orden=estamina
+// Obtiene habilidades ordenadas por estamina de mayor a menor
+// ========================
+router.get('/', (req, res) => {
+  const { orden } = req.query;
+
+  let resultado = [...habilidades]; // Copia el array para no modificar el original
+
+  // Validar que solo se permita "estamina"
+  if (orden && orden !== 'estamina') {
+    return res.status(400).json({
+      error: "El único valor permitido para 'orden' es 'estamina'"
+    });
+  }
+
+  // Ordenar si viene correctamente
+  if (orden === 'estamina') {
+    resultado.sort((a, b) => b.incremento_estamina - a.incremento_estamina);
+  }
+
+  res.status(200).json(resultado);
+});
+
 module.exports = router;
